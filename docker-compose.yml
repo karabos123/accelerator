@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: accelerator-app
+    ports:
+      - "5678:80"
+    restart: always
