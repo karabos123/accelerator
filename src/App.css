@@ -1,0 +1,174 @@
+:root {
+  --bg-deep: #0a0b1e;
+  --bg-card: rgba(25, 27, 49, 0.7);
+  --accent-purple: #8b5cf6;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+  --text-main: #e2e8f0;
+  --text-dim: #94a3b8;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --radius-lg: 24px;
+  --radius-md: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 260px 1fr 340px;
+  grid-template-rows: 70px 1fr;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at 50% 50%, #161b33 0%, #0a0b1e 100%);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.scrollable {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-blue) transparent;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--accent-blue);
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: 80px 1fr 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    grid-row: auto !important;
+    padding: 10px !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    height: 70px !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    border-radius: 0 !important;
+    border-top: 1px solid var(--glass-border) !important;
+  }
+
+  .sidebar .logo, .sidebar-card {
+    display: none !important;
+  }
+
+  .sidebar nav {
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .topbar {
+    grid-column: 1 !important;
+    padding: 15px !important;
+    height: auto !important;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .topbar h1 {
+    font-size: 1.1rem !important;
+    text-align: center;
+  }
+
+  .search-container {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .roadmap-container {
+    padding: 20px 15px !important;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .direction-card {
+    max-width: 100% !important;
+    padding: 20px !important;
+  }
+
+  .task-panel {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    border-left: none;
+    border-top: 1px solid var(--glass-border);
+    padding: 20px 15px 100px 15px !important;
+  }
+}
+
+/* Extra small screens (iPhone SE, etc.) */
+@media (max-width: 400px) {
+  .topbar h1 {
+    font-size: 0.95rem !important;
+  }
+
+  .search-container {
+    display: none !important;
+  }
+
+  .direction-card {
+    padding: 15px !important;
+  }
+
+  .direction-card h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .direction-card p {
+    font-size: 0.8rem !important;
+  }
+
+  .sidebar {
+    height: 60px !important;
+  }
+
+  .nav-item {
+    padding: 8px !important;
+    font-size: 0.85rem !important;
+  }
+}
