@@ -30,7 +30,7 @@ const INITIAL_DATA = [
   {
     id: 'backend',
     title: 'Backend-разработчик',
-    zoneName: 'Башня API',
+    zoneName: 'Java Башня',
     rank: 'API Initiate',
     progress: 0,
     xp: 180,
@@ -51,7 +51,7 @@ const INITIAL_DATA = [
   {
     id: 'ml',
     title: 'ML-инженер',
-    zoneName: 'Лаборатория данных',
+    zoneName: 'Python Лес',
     rank: 'Data Novice',
     progress: 0,
     xp: 200,
