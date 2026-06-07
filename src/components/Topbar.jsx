@@ -1,52 +1,71 @@
 import React from 'react';
-import { Search, Bell, Flame, User } from './Icons';
+import { Search, Bell, Flame } from './Icons';
 
 const Topbar = () => {
   return (
-    <div className="topbar glass" style={{ 
+    <div className="topbar" style={{ 
       gridColumn: '2 / 4', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'space-between', 
-      padding: '0 30px',
-      zIndex: 10,
-      flexWrap: 'wrap'
+      padding: '0 24px',
+      backgroundColor: 'var(--bg-deep)',
+      borderBottom: '1px solid var(--glass-border)',
+      zIndex: 10
     }}>
-      <div className="topbar-left" style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1, minWidth: 'auto' }}>
-        <h1 style={{ fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)', whiteSpace: 'normal', textAlign: 'center' }}>
-          Суверенная дорожная карта
-        </h1>
-        <div className="search-container" style={{ position: 'relative', flex: 1, maxWidth: '400px' }}>
+      <div className="topbar-left" style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1 }}>
+        <div className="search-container" style={{ position: 'relative', width: '400px' }}>
           <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-dim)' }} />
           <input 
             type="text" 
-            placeholder="Поиск..." 
+            placeholder="Поиск по навыкам, квестам и проектам..." 
             style={{
-              padding: '10px 15px 10px 40px',
+              padding: '8px 15px 8px 40px',
               width: '100%',
-              borderRadius: '12px',
+              borderRadius: '6px',
               border: '1px solid var(--glass-border)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              color: 'white',
-              outline: 'none'
+              backgroundColor: 'var(--bg-card)',
+              color: 'var(--text-white)',
+              outline: 'none',
+              fontSize: '0.85rem'
             }}
           />
+          <div style={{ 
+            position: 'absolute', 
+            right: '10px', 
+            top: '50%', 
+            transform: 'translateY(-50%)', 
+            fontSize: '0.7rem', 
+            color: 'var(--text-dim)',
+            padding: '2px 6px',
+            backgroundColor: 'rgba(255,255,255,0.05)',
+            borderRadius: '4px',
+            border: '1px solid var(--glass-border)'
+          }}>
+            ⌘K
+          </div>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         <div style={{ position: 'relative', cursor: 'pointer', color: 'var(--text-dim)' }}>
           <Bell size={20} />
           <div style={{ 
             position: 'absolute', 
             top: '-2px', 
             right: '-2px', 
-            width: '8px', 
-            height: '8px', 
+            width: '14px', 
+            height: '14px', 
             backgroundColor: '#ef4444', 
             borderRadius: '50%',
-            border: '2px solid var(--bg-deep)'
-          }}></div>
+            border: '2px solid var(--bg-deep)',
+            fontSize: '8px',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontWeight: 'bold'
+          }}>3</div>
         </div>
       </div>
     </div>

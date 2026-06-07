@@ -4,120 +4,99 @@ import { Code, Server, Database, CheckCircle2, Circle, PlayCircle } from './Icon
 const DirectionCard = ({ direction, index, isActive, onSelect }) => {
   const getIcon = () => {
     switch (direction.id) {
-      case 'frontend': return <Code size={32} color="var(--accent-cyan)" />;
-      case 'backend': return <Server size={32} color="var(--accent-blue)" />;
-      case 'ml': return <Database size={32} color="var(--accent-purple)" />;
-      default: return <Code size={32} />;
+      case 'frontend': return <Code size={24} color="var(--accent-cyan)" />;
+      case 'backend': return <Server size={24} color="var(--accent-blue)" />;
+      case 'ml': return <Database size={24} color="var(--accent-purple)" />;
+      default: return <Code size={24} />;
     }
   };
 
   const getStatusIcon = () => {
-    if (direction.progress === 100) return <CheckCircle2 size={20} color="var(--accent-green)" />;
-    if (direction.task.status === 'В процессе') return <PlayCircle size={20} color="var(--accent-blue)" />;
-    return <Circle size={20} color="var(--text-dim)" />;
+    if (direction.progress === 100) return <CheckCircle2 size={16} color="var(--accent-green)" />;
+    return null;
+  };
+
+  const getPointLabel = () => {
+    switch (direction.id) {
+      case 'frontend': return 'HTML Деревня';
+      case 'backend': return 'Java Башня';
+      case 'ml': return 'Python Лес';
+      default: return direction.zoneName;
+    }
   };
 
   return (
     <div 
       onClick={onSelect}
-      className={`direction-card glass ${isActive ? 'active' : ''}`}
+      className={`direction-card ${isActive ? 'active' : ''}`}
       style={{
-        width: '100%',
-        maxWidth: '500px',
-        padding: '24px',
+        width: '200px',
+        padding: '12px',
         borderRadius: 'var(--radius-lg)',
         cursor: 'pointer',
         position: 'relative',
         zIndex: 1,
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-        border: isActive ? '2px solid var(--accent-blue)' : '1px solid var(--glass-border)',
-        transform: isActive ? 'scale(1.02)' : 'scale(1)',
-        boxShadow: isActive ? '0 0 30px rgba(59, 130, 246, 0.3)' : 'var(--glass-shadow)'
+        transition: 'all 0.3s ease',
+        backgroundColor: 'rgba(28, 33, 40, 0.9)',
+        border: isActive ? '2px solid var(--accent-cyan)' : '1px solid var(--glass-border)',
+        boxShadow: isActive ? '0 0 20px rgba(0, 212, 255, 0.4)' : '0 4px 12px rgba(0,0,0,0.3)',
+        backdropFilter: 'blur(8px)'
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <div className="step-number" style={{ 
-          width: '32px', 
-          height: '32px', 
-          minWidth: '32px',
-          borderRadius: '8px', 
-          backgroundColor: 'rgba(255,255,255,0.05)', 
+          width: '28px', 
+          height: '28px', 
+          minWidth: '28px',
+          borderRadius: '50%', 
+          backgroundColor: index === 1 ? 'var(--accent-green)' : index === 2 ? 'var(--accent-blue)' : '#eab308', 
           display: 'flex', 
           alignItems: 'center', 
           justifyContent: 'center',
-          fontSize: '1rem',
+          fontSize: '0.85rem',
           fontWeight: 'bold',
-          color: 'var(--text-dim)'
+          color: 'white'
         }}>
           {index}
         </div>
         
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              Направление
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <h4 style={{ fontSize: '0.85rem', fontWeight: '700', color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {getPointLabel()}
+            </h4>
             {getStatusIcon()}
           </div>
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{direction.zoneName}</h3>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{direction.title}</p>
-        </div>
-
-        <div className="card-icon" style={{ 
-          width: '48px', 
-          height: '48px', 
-          minWidth: '48px',
-          borderRadius: '12px', 
-          background: 'rgba(255,255,255,0.03)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid var(--glass-border)'
-        }}>
-          {getIcon()}
-        </div>
-      </div>
-
-      <div style={{ marginTop: '20px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.85rem' }}>
-          <span style={{ color: 'var(--text-dim)' }}>Прогресс</span>
-          <span style={{ color: 'white', fontWeight: 'bold' }}>{direction.progress}%</span>
-        </div>
-        <div style={{ 
-          height: '8px', 
-          width: '100%', 
-          backgroundColor: 'rgba(255,255,255,0.05)', 
-          borderRadius: '4px',
-          overflow: 'hidden'
-        }}>
-          <div style={{ 
-            height: '100%', 
-            width: `${direction.progress}%`, 
-            background: 'linear-gradient(to right, var(--accent-blue), var(--accent-cyan))',
-            transition: 'width 0.5s ease-out'
-          }}></div>
+          <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+            {direction.progress === 100 ? 'Пройдено 100%' : `Прогресс ${direction.progress}%`}
+          </p>
         </div>
       </div>
 
       {isActive && (
         <div style={{ 
           position: 'absolute', 
-          right: '-10px', 
-          top: '50%', 
-          transform: 'translateY(-50%)',
-          width: '20px',
-          height: '20px',
-          backgroundColor: 'var(--accent-blue)',
-          borderRadius: '4px',
-          rotate: '45deg',
-          boxShadow: '0 0 15px var(--accent-blue)'
-        }}></div>
+          bottom: '-12px', 
+          left: '50%', 
+          transform: 'translateX(-50%)',
+          width: '24px',
+          height: '24px',
+          backgroundColor: 'var(--accent-cyan)',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 0 15px var(--accent-cyan)',
+          border: '3px solid white'
+        }}>
+          <CheckCircle2 size={12} color="white" />
+        </div>
       )}
 
       <style>{`
         .direction-card:hover {
-          background-color: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 255, 255, 0.2);
+          transform: translateY(-5px);
+          background-color: var(--bg-card-hover);
         }
       `}</style>
     </div>
